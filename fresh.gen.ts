@@ -4,18 +4,28 @@
 
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/[name].tsx";
-import * as $1 from "./routes/api/joke.ts";
-import * as $2 from "./routes/index.tsx";
-import * as $$0 from "./islands/Counter.tsx";
+import * as $1 from "./routes/_middleware.ts";
+import * as $2 from "./routes/api/joke.ts";
+import * as $3 from "./routes/auth/login/index.tsx";
+import * as $4 from "./routes/auth/login/oauth.ts";
+import * as $5 from "./routes/auth/login/success.tsx";
+import * as $6 from "./routes/index.tsx";
+import * as $$0 from "./islands/AuthFragmentCatcher.tsx";
+import * as $$1 from "./islands/Counter.tsx";
 
 const manifest = {
   routes: {
     "./routes/[name].tsx": $0,
-    "./routes/api/joke.ts": $1,
-    "./routes/index.tsx": $2,
+    "./routes/_middleware.ts": $1,
+    "./routes/api/joke.ts": $2,
+    "./routes/auth/login/index.tsx": $3,
+    "./routes/auth/login/oauth.ts": $4,
+    "./routes/auth/login/success.tsx": $5,
+    "./routes/index.tsx": $6,
   },
   islands: {
-    "./islands/Counter.tsx": $$0,
+    "./islands/AuthFragmentCatcher.tsx": $$0,
+    "./islands/Counter.tsx": $$1,
   },
   baseUrl: import.meta.url,
   config,

@@ -10,7 +10,7 @@ import type { RedirectStatus, Status } from "$std/http/http_status.ts";
  * @param status HTTP status
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Location}
  */
-export function redirect(
+export default function redirect(
   location: string,
   status: Status.Created | RedirectStatus = 303,
 ) {
