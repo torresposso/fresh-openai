@@ -1,7 +1,6 @@
 // Copyright 2023 the Deno authors. All rights reserved. MIT license.
 import type { Handlers } from "$fresh/server.ts";
 import { ensureGetEnv } from "../../utils/env.ts";
-import { ApplicationError } from "../../utils/errors.ts";
 
 export const corsHeaders = {
   "Access-Control-Allow-Headers":
@@ -12,7 +11,11 @@ export const handler: Handlers = {
   async POST(req) {
     const form = await req.formData();
     form.append("n", "2");
-    form.append("size", "256x256");
+    form.append("size", "512x512");
+
+    console.log("keys", form.keys());
+    console.log("entries", form.entries());
+    console.log("values", form.values());
 
     try {
       // Handle CORS
@@ -22,7 +25,7 @@ export const handler: Handlers = {
 
       // The Fetch API allows for easier response streaming over the OpenAI client.
       const response = await fetch(
-        "https://api.openai.com/v1/images/variations",
+        "https://api.openai.com/v1/images/edits",
         {
           headers: {
             Authorization: `Bearer ${ensureGetEnv("OPENAI_API_KEY")}`,
@@ -34,7 +37,7 @@ export const handler: Handlers = {
 
       const { data } = await response.json();
 
-      console.log("res", data);
+      console.log("res", JSON.stringify(data));
 
       if (data) {
         return Response.json(data, {

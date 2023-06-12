@@ -1,42 +1,21 @@
-import { useState } from "preact/hooks";
-
-const fileToDataUri = (file) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      resolve(event.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
+import { useRef, useState } from "preact/hooks";
 
 function ImageUploader() {
   const [selectedImage, setSelectedImage] = useState();
-  const [uploadImage, setUploadImage] = useState();
-  const [uploadMask, setUploadMask] = useState();
-  const [variationImageA, setVariationImageA] = useState("");
-  const [variationImageB, setVariationImageB] = useState("");
+  const [selectedMask, setSelectedMask] = useState();
+  const [imageEditA, setImageEditA] = useState();
+  const [imageEditB, setImageEditB] = useState();
+
+  const promptRef = useRef(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      const imageData = new Blob([reader.result], { type: file.type });
-      setSelectedImage(imageData);
-    };
-
-    reader.readAsArrayBuffer(file);
+    setSelectedImage(file);
   };
-
-  // const handleMaskChange = (e) => {
-  //   const mask = e.target.files[0];
-  //   setSelectedMask(URL.createObjectURL(mask));
-  //   setUploadMask(mask);
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedImage) {
+    if (!selectedImage || !promptRef) {
       alert("Please select an image file.");
       return;
     }
@@ -44,18 +23,19 @@ function ImageUploader() {
     try {
       const formData = new FormData();
       formData.append("image", selectedImage);
+      formData.append("prompt", String(promptRef));
 
       const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
 
-      // const res = await response.json();
       console.log("response", response);
       const res = await response.json();
       console.log("response json", res);
-      setVariationImageA(res[0].url);
-      setVariationImageB(res[1].url);
+
+      setImageEditA(res[0].url);
+      setImageEditB(res[1].url);
     } catch (error) {
       console.error("Error uploading image:", error);
       alert("Failed to upload image. Please try again.");
@@ -79,19 +59,27 @@ function ImageUploader() {
           )}
         </div>
 
+        <div>
+          <input
+            type="text"
+            name="prompt"
+            ref={promptRef}
+          />
+        </div>
+
         <button type="submmit">Upload</button>
       </form>
 
-      {variationImageA && (
+      {imageEditA && (
         <div>
           <p>Uploaded Image:</p>
-          <img src={variationImageA} alt="Uploaded" />
+          <img src={imageEditA} alt="Uploaded" />
         </div>
       )}
-      {variationImageB && (
+      {imageEditB && (
         <div>
           <p>Uploaded Image:</p>
-          <img src={variationImageB} alt="Uploaded" />
+          <img src={imageEditB} alt="Uploaded" />
         </div>
       )}
     </div>
