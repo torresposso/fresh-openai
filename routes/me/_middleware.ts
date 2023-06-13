@@ -1,10 +1,10 @@
-// // Copyright 2023 the Deno authors. All rights reserved. MIT license.
-// import { State } from "@/routes/_middleware.ts";
-// import type { Session } from "@supabase/supabase-js";
-// import { ensureLoggedInMiddleware } from "@/utils/supabase.ts";
+// Copyright 2023 the Deno authors. All rights reserved. MIT license.
+import { State } from "@/routes/_middleware.ts";
+import type { Session } from "@supabase/supabase-js";
+import { ensureLoggedInMiddleware } from "@/utils/supabase.ts";
 
-// export interface AccountState extends State {
-//   session: Session;
-// }
+export interface AccountState extends State {
+  session: Session;
+}
 
-// export const handler = ensureLoggedInMiddleware;
+export const handler = ensureLoggedInMiddleware;

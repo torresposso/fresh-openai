@@ -16,9 +16,8 @@ export default function Home(props: PageProps) {
       <div class="mt-10 px-5 mx-auto flex max-w-screen-md flex-col justify-center">
         {props.data.session
           ? (
-            <div class="mx-auto text-center">
+            <div class="mx-auto overflow-auto whitespace-pre-wrap flex-wrap flex max-w-2xl">
               <h1 class="text-2xl font-bold mb-5">Nice you're logged In!</h1>
-              <pre>{JSON.stringify(props.data.session, null, 2)}</pre>
             </div>
           )
           : (

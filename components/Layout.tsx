@@ -1,6 +1,6 @@
 import { Head } from "$fresh/runtime.ts";
 import type { ComponentChildren } from "preact";
-import Nav from "./Nav.tsx";
+import Nav from "@/components/Nav.tsx";
 
 interface LayoutProps {
   isLoggedIn: boolean;
@@ -9,14 +9,11 @@ interface LayoutProps {
 
 export default function Layout(props: LayoutProps) {
   return (
-    <>
-      <Head>
-        <title>Fresh Auth</title>
-      </Head>
+    <main class="bg-red-500">
       <Nav active="/" loggedIn={props.isLoggedIn} />
-      <div class="p-4 mx-auto max-w-screen-md">
+      <div class="p-10 ">
         {props.children}
       </div>
-    </>
+    </main>
   );
 }

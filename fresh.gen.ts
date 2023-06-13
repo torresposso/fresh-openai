@@ -3,32 +3,34 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/0_middleware.ts";
-import * as $1 from "./routes/[name].tsx";
-import * as $2 from "./routes/api/joke.ts";
-import * as $3 from "./routes/api/upload.ts";
-import * as $4 from "./routes/auth/login/index.tsx";
-import * as $5 from "./routes/auth/login/oauth.ts";
-import * as $6 from "./routes/auth/login/success.tsx";
-import * as $7 from "./routes/index.tsx";
-import * as $8 from "./routes/me/_middleware.ts";
-import * as $9 from "./routes/me/index.tsx";
+import * as $0 from "./routes/[name].tsx";
+import * as $1 from "./routes/_app.tsx";
+import * as $2 from "./routes/_middleware.ts";
+import * as $3 from "./routes/api/joke.ts";
+import * as $4 from "./routes/api/upload.ts";
+import * as $5 from "./routes/auth/login/index.tsx";
+import * as $6 from "./routes/auth/login/oauth.ts";
+import * as $7 from "./routes/auth/login/success.tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/me/_middleware.ts";
+import * as $10 from "./routes/me/index.tsx";
 import * as $$0 from "./islands/AuthFragmentCatcher.tsx";
 import * as $$1 from "./islands/Counter.tsx";
 import * as $$2 from "./islands/ImageUploader.tsx";
 
 const manifest = {
   routes: {
-    "./routes/0_middleware.ts": $0,
-    "./routes/[name].tsx": $1,
-    "./routes/api/joke.ts": $2,
-    "./routes/api/upload.ts": $3,
-    "./routes/auth/login/index.tsx": $4,
-    "./routes/auth/login/oauth.ts": $5,
-    "./routes/auth/login/success.tsx": $6,
-    "./routes/index.tsx": $7,
-    "./routes/me/_middleware.ts": $8,
-    "./routes/me/index.tsx": $9,
+    "./routes/[name].tsx": $0,
+    "./routes/_app.tsx": $1,
+    "./routes/_middleware.ts": $2,
+    "./routes/api/joke.ts": $3,
+    "./routes/api/upload.ts": $4,
+    "./routes/auth/login/index.tsx": $5,
+    "./routes/auth/login/oauth.ts": $6,
+    "./routes/auth/login/success.tsx": $7,
+    "./routes/index.tsx": $8,
+    "./routes/me/_middleware.ts": $9,
+    "./routes/me/index.tsx": $10,
   },
   islands: {
     "./islands/AuthFragmentCatcher.tsx": $$0,
