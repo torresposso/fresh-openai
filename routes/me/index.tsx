@@ -5,6 +5,9 @@ import { State } from "@/routes/_middleware.ts";
 
 export const handler: Handlers<any, State> = {
   GET(_req, ctx) {
+    const supabase = ctx.state.supabaseClient
+
+    
     return ctx.render({ ...ctx.state });
   },
 };
@@ -15,9 +18,9 @@ export default function Me(props: PageProps) {
       <div class="mt-10 px-5 mx-auto flex max-w-screen-md flex-col justify-center">
         {props.data.session
           ? (
-            <div class="mx-auto text-center ">
+            <div class="mx-auto ">
               <h1 class="text-2xl font-bold mb-5">You are on me!</h1>
-              <pre>{JSON.stringify(props.data.session, null, 2)}</pre>
+              <pre>{JSON.stringify(props, null, 2)}</pre>
             </div>
           )
           : (
